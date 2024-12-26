@@ -21,7 +21,10 @@ app.use('/api/students', studentRoutes);
 app.use('/api/companies', companyRoutes);
 app.use('/api/placements', placementRoutes);
 
+// Suppress Mongoose strictQuery warning
+mongoose.set('strictQuery', false);
+
 // Database connection
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => app.listen(PORT, () => console.log(`Server running on port ${PORT}`)))
-    .catch(err => console.log(err));
+  .then(() => app.listen(PORT, () => console.log(`Server running on port ${PORT}`)))
+  .catch((err) => console.log(err));
